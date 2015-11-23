@@ -1,10 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package dale.is.awesome.fugueback.player;
 
+package dale.is.awesome.fugueback.model.composer;
+
+import dale.is.awesome.fugueback.model.FugueComposer;
+import dale.is.awesome.fugueback.model.FugueMusic;
+import dale.is.awesome.fugueback.model.music.BasicMusic;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,11 +11,11 @@ import java.util.List;
  *
  * @author daleapplegate
  */
-public class BasicFugueComposer implements FugueComposer {
+public class RachmaninoffFugueComposer implements FugueComposer {
 
     private List<String> sheet = new ArrayList<>();
     private static Integer lastNote = 4;
-    public BasicFugueComposer() {
+    public RachmaninoffFugueComposer() {
         sheet.add("A");
         sheet.add("B");
         sheet.add("C");
@@ -27,7 +26,7 @@ public class BasicFugueComposer implements FugueComposer {
         
     }
     @Override
-    public String compose(String logString) {
+    public FugueMusic compose(String logString) {
         Integer thisNote = logString.length();
         if(thisNote > 6) 
             thisNote = thisNote%7;
@@ -39,7 +38,14 @@ public class BasicFugueComposer implements FugueComposer {
                 thisNote--;
         }
         lastNote = thisNote;
-        return sheet.get(thisNote);
+        
+        return new BasicMusic(sheet.get(thisNote));
+        
+    }
+    
+    @Override
+    public boolean isComposer(String composerName) {
+        return "Rachmaninoff".equalsIgnoreCase(composerName);
     }
     
 }

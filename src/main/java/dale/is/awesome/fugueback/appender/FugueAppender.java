@@ -3,9 +3,8 @@ package dale.is.awesome.fugueback.appender;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-import dale.is.awesome.fugueback.player.BasicFugueComposer;
-import dale.is.awesome.fugueback.player.FugueComposer;
-import dale.is.awesome.fugueback.player.FuguePlayer;
+import dale.is.awesome.fugueback.model.FugueComposer;
+import dale.is.awesome.fugueback.player.SynchronousFuguePlayer;
 
 /**
  *
@@ -13,15 +12,16 @@ import dale.is.awesome.fugueback.player.FuguePlayer;
  */
 public class FugueAppender extends AppenderBase<ILoggingEvent> {
 
+    private SynchronousFuguePlayer fuguePlayer = new SynchronousFuguePlayer();
+    private FugueComposer fugueComposer = null;
     
-    FuguePlayer fuguePlayer = new FuguePlayer();
-    FugueComposer composer = new BasicFugueComposer();
-            
-            
+    
+    public void setComposer(String composer) {
+        fugueComposer = FugueComposerFactory.getComposer(composer);
+    }
+
     @Override
     protected void append(ILoggingEvent eventObject) {
-        
-        fuguePlayer.play(composer, eventObject.getFormattedMessage());
+        fuguePlayer.play(fugueComposer.compose(eventObject.getFormattedMessage()));
     }
-    
 }

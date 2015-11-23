@@ -3,7 +3,9 @@ package dale.is.awesome.fugueback.appender;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-import dale.is.awesome.fugueback.player.LogPlayer;
+import dale.is.awesome.fugueback.player.BasicFugueComposer;
+import dale.is.awesome.fugueback.player.FugueComposer;
+import dale.is.awesome.fugueback.player.FuguePlayer;
 
 /**
  *
@@ -11,10 +13,15 @@ import dale.is.awesome.fugueback.player.LogPlayer;
  */
 public class FugueAppender extends AppenderBase<ILoggingEvent> {
 
-    private LogPlayer player = new LogPlayer();
+    
+    FuguePlayer fuguePlayer = new FuguePlayer();
+    FugueComposer composer = new BasicFugueComposer();
+            
+            
     @Override
     protected void append(ILoggingEvent eventObject) {
-        player.play(eventObject.getMessage());
+        
+        fuguePlayer.play(composer, eventObject.getMessage());
     }
     
 }

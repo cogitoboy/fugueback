@@ -18,5 +18,6 @@ Add Appender in Logback xml
   <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
     <level>TRACE</level>
   </filter>
+  <composer>Rachmaninoff</composer>
 </appender>
   

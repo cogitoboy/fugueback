@@ -3,6 +3,7 @@ package dale.is.awesome.fugueback.appender;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
+import dale.is.awesome.fugueback.player.LogPlayer;
 
 /**
  *
@@ -10,9 +11,10 @@ import ch.qos.logback.core.AppenderBase;
  */
 public class FugueAppender extends AppenderBase<ILoggingEvent> {
 
+    private LogPlayer player = new LogPlayer();
     @Override
     protected void append(ILoggingEvent eventObject) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        player.play(eventObject.getMessage());
     }
     
 }

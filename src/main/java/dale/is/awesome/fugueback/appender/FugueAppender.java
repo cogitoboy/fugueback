@@ -21,7 +21,7 @@ public class FugueAppender extends AppenderBase<ILoggingEvent> {
     @Override
     protected void append(ILoggingEvent eventObject) {
         
-        fuguePlayer.play(composer, eventObject.getMessage());
+        fuguePlayer.play(composer, eventObject.getFormattedMessage());
     }
     
 }

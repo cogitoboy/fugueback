@@ -15,7 +15,7 @@ import java.util.List;
 public class BasicFugueComposer implements FugueComposer {
 
     private List<String> sheet = new ArrayList<>();
-    
+    private static Integer lastNote = 4;
     public BasicFugueComposer() {
         sheet.add("A");
         sheet.add("B");
@@ -28,12 +28,18 @@ public class BasicFugueComposer implements FugueComposer {
     }
     @Override
     public String compose(String logString) {
-        Integer length = logString.length();
-        while(length > 6) {
-            length = length/2;
-        }
+        Integer thisNote = logString.length();
+        if(thisNote > 6) 
+            thisNote = thisNote%7;
         
-        return sheet.get(length);
+        if (lastNote.equals(thisNote)){
+            if (thisNote.equals(0))
+                thisNote = 6;
+            else
+                thisNote--;
+        }
+        lastNote = thisNote;
+        return sheet.get(thisNote);
     }
     
 }

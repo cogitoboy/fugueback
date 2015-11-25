@@ -9,18 +9,23 @@ import org.jfugue.player.Player;
  *
  * @author daleapplegate
  */
-public class SynchronousFuguePlayer implements FuguePlayer {
+public class SyncFuguePlayer implements FuguePlayer {
     
-    protected Player player = new Player();
+    
     protected ExecutorService executor = Executors.newCachedThreadPool();
     
     @Override
     public void play(FugueMusic music) {
         executor.submit(new CallablePlayer(music.getFugueString()));
     }
+
+    @Override
+    public void stop() {
+        executor.shutdownNow();
+    }
     
     protected class CallablePlayer implements Callable<String>{
-        
+        protected Player player = new Player();
         String music;
         
         public CallablePlayer(String music) {

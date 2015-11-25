@@ -2,6 +2,7 @@
 package dale.is.awesome.fugueback.appender;
 
 import dale.is.awesome.fugueback.model.FugueComposer;
+import dale.is.awesome.fugueback.model.composer.DaleFugueComposer;
 import dale.is.awesome.fugueback.model.composer.RachmaninoffFugueComposer;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ public class FugueComposerFactory {
     
     static {
         fugueComposers.add(new RachmaninoffFugueComposer());
+        fugueComposers.add(new DaleFugueComposer());
     }
     
     public static FugueComposer getComposer(String composerName) {

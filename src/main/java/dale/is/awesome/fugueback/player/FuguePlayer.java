@@ -9,4 +9,5 @@ import dale.is.awesome.fugueback.model.FugueMusic;
  */
 public interface FuguePlayer {
     public void play(FugueMusic music);
+    public void stop();
 }

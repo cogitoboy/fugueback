@@ -5,6 +5,7 @@ import dale.is.awesome.fugueback.model.FugueComposer;
 import dale.is.awesome.fugueback.model.FugueMusic;
 import dale.is.awesome.fugueback.model.music.BasicMusic;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -14,19 +15,21 @@ import java.util.List;
 public class RachmaninoffFugueComposer implements FugueComposer {
 
     private List<String> sheet = new ArrayList<>();
+    private HashMap<String, String> trans = new HashMap<>();
     private static Integer lastNote = 4;
     public RachmaninoffFugueComposer() {
-        sheet.add("A");
-        sheet.add("B");
-        sheet.add("C");
-        sheet.add("D");
-        sheet.add("E");
-        sheet.add("F");
-        sheet.add("G");
+        sheet.add("V0 I[Piano] Dq Eq | Cqqq Dq");
+        sheet.add("V0 I[Piano] Dq Eq | Eqqq Dq");
+        sheet.add("V0 I[Piano] Dq Eq | Gqqq Dq");
+        sheet.add("V0 I[Piano] Dq Eq | Dqqq Dq");
+        sheet.add("V0 I[Piano] Cq Bq | Bqqq Dq");
+        sheet.add("V0 I[Piano] Dq Bq | Aqqq Dq");
+        sheet.add("V0 I[Piano] Dq Eq | Fqqq Dq");
+        
         
     }
     @Override
-    public FugueMusic compose(String logString) {
+    public FugueMusic compose(int instrument, String loggerName, String logString) {
         Integer thisNote = logString.length();
         if(thisNote > 6) 
             thisNote = thisNote%7;

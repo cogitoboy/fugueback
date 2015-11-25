@@ -9,6 +9,6 @@ public interface FugueComposer {
     
     public boolean isComposer(String composerName);
     
-    public FugueMusic compose(String logString);
+    public FugueMusic compose(int instrument, String loggerName, String logString);
     
 }
